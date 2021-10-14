@@ -5,10 +5,7 @@ import ListItem from './components/ListItem';
 import AddArea from './components/AddArea';
 
 function App() {
-  const [list, setList] = useState<Item[]>([
-    { id: 1, name: 'Verificar bugs do Projeto', done: false },
-    { id: 2, name: 'Revisar aulas de Banco de Dados', done: true },
-  ])
+  const [list, setList] = useState<Item[]>([])
 
   function handleAddTask(taskName: string) {
     let newList = [...list];
@@ -30,6 +27,9 @@ function App() {
     setList(newList);
   }
 
+  function handleDelete(id: number) {
+    setList (list.filter(item => item.id !== id));
+  }
 
   return (
     <Container>
@@ -38,7 +38,7 @@ function App() {
 
         <AddArea onEnter={handleAddTask} />
         
-        { list.map((item, index) => (<ListItem key={index} item={item} onChange={handleTaskChange} />))}   
+        { list.map((item, index) => (<ListItem key={index} item={item} onChange={handleTaskChange} onDelete={handleDelete} />))}   
       </Area>
     </Container>
   );

@@ -22,7 +22,7 @@ function ListItem({ item, onChange, onDelete }: Props) {
         onChange={e => onChange(item.id, e.target.checked)}
       />
       <label>{item.name}</label>
-      <img src={deleta} alt="" onClick={buttonDelete} />
+      <img src={deleta} alt="icone de deletar" onClick={buttonDelete} />
     </Container>
   )
 }

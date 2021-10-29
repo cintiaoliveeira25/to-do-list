@@ -1,30 +1,53 @@
-import { Container } from './styles';
-import { Item } from '../../types/item';
-import deleta from '../../assets/images/delete.svg';
+import { Checkbox, Container } from "./styles";
+import { Item } from "../../types/item";
+import deleta from "../../assets/images/delete.svg";
+import editar from "../../assets/images/editar-texto.png";
 
 type Props = {
-  item: Item,
-  onChange: (id: number, done: boolean) => void,
-  onDelete: (id: number) => void
-}
+  item: Item;
+  onChange: (id: number, done: boolean) => void;
+  onDelete: (id: number) => void;
+  onEdit: (id: number) => void;
+};
 
-function ListItem({ item, onChange, onDelete }: Props) {
-
+export function ListItem({ item, onChange, onDelete, onEdit }: Props) {
   function buttonDelete() {
     onDelete(item.id);
   }
 
+  function buttonEdit() {
+    onEdit(item.id);
+    alert("tem certeza?");
+  }
+
   return (
     <Container done={item.done}>
-      <input 
-        type="checkbox" 
-        checked={item.done}
-        onChange={e => onChange(item.id, e.target.checked)}
-      />
-      <label>{item.name}</label>
-      <img src={deleta} alt="icone de deletar" onClick={buttonDelete} />
-    </Container>
-  )
-}
+      <Checkbox>
+        <label className="container">
+          <input
+            type="checkbox"
+            checked={item.done}
+            onChange={(e) => onChange(item.id, e.target.checked)}
+          />
+          <span className="checkmark"></span>
+          <label>{item.name}</label>
+        </label>
+      </Checkbox>
 
-export default ListItem;
+      <div>
+        <img
+          src={editar}
+          alt="icone de editar"
+          title="Editar item"
+          onClick={buttonEdit}
+        />
+        <img
+          src={deleta}
+          alt="icone de deletar"
+          title="Deletar item"
+          onClick={buttonDelete}
+        />
+      </div>
+    </Container>
+  );
+}

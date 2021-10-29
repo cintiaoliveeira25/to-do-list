@@ -1,11 +1,11 @@
-import { KeyboardEvent, ChangeEvent, useEffect, useState } from "react";
+import { KeyboardEvent, ChangeEvent, useState } from "react";
 import { Container } from "./styles";
 
 type Props = {
   onEnter: (taskName: string) => void;
 };
 
-function AddArea({ onEnter }: Props) {
+export function AddArea({ onEnter }: Props) {
   const [inputText, setInputText] = useState<string>("");
 
   function handleKeyUp(e: KeyboardEvent) {
@@ -27,7 +27,9 @@ function AddArea({ onEnter }: Props) {
         done: false,
       };
       let newList = [...oldList, newItem];
+
       localStorage.setItem("SaveItemListLocalStorage", JSON.stringify(newList));
+      
     } else if (localStorage.getItem("SaveItemListLocalStorage") === null) {
       const newItem = {
         id: 1,
@@ -45,16 +47,8 @@ function AddArea({ onEnter }: Props) {
     setInputText(e.currentTarget.value);
   }
 
-  useEffect(() => {
-    // const storage = localStorage.getItem('SaveItemListLocalStorage');
-    // if (storage) {
-    //   setInputText(JSON.parse(storage));
-    // }
-  }, []);
-
   return (
     <Container>
-      <div className="image">➕</div>
       <input
         type="text"
         placeholder="Adicione uma tarefa"
@@ -66,4 +60,3 @@ function AddArea({ onEnter }: Props) {
   );
 }
 
-export default AddArea;

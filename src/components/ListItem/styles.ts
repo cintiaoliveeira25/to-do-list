@@ -22,6 +22,7 @@ export const Container = styled.div(
     img {
         max-width: 28px;
         cursor: pointer;
+        padding-left: 5px;
     }
 `
 );
@@ -55,6 +56,7 @@ export const Checkbox = styled.div`
     left: 5px;
     height: 25px;
     width: 25px;
+    border-radius: 4px;
     background-color: #e1e1e1;
   }
 
@@ -88,4 +90,7 @@ export const Checkbox = styled.div`
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
   }
+`;
+
+export const Icons = styled.div`
 `;

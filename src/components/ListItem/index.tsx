@@ -1,4 +1,4 @@
-import { Checkbox, Container } from "./styles";
+import { Checkbox, Container, Icons } from "./styles";
 import { Item } from "../../types/item";
 import deleta from "../../assets/images/delete.svg";
 import editar from "../../assets/images/editar-texto.png";
@@ -34,7 +34,7 @@ export function ListItem({ item, onChange, onDelete, onEdit }: Props) {
         </label>
       </Checkbox>
 
-      <div>
+      <Icons>
         <img
           src={editar}
           alt="icone de editar"
@@ -47,7 +47,7 @@ export function ListItem({ item, onChange, onDelete, onEdit }: Props) {
           title="Deletar item"
           onClick={buttonDelete}
         />
-      </div>
+      </Icons>
     </Container>
   );
 }

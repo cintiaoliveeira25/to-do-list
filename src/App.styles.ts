@@ -14,7 +14,14 @@ export const Header = styled.div`
   padding: 50px;
 `;
 
-export const NemItem = styled.div`
+export const Titulo = styled.h1`
+  color: #fb3640;
+  font-size: 40px;
+  text-align: center;
+  padding-bottom: 20px;
+`;
+
+export const NewItem = styled.div`
   width: 50%;
 `;
 
@@ -39,9 +46,36 @@ export const AreaList = styled.div`
     ) 1 100%;
 `;
 
-export const Titulo = styled.h1`
-  color: #fb3640;
-  font-size: 40px;
-  text-align: center;
-  padding-bottom: 20px;
+export const Modal = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  position: absolute;
+  color: white;
+  z-index: 99;
+  top: 40%;
+  width: 78%;
+  height: 60px;
+  border-radius: 5px;
+
+  input {
+    width: 50%;
+    height: 50%;
+    margin-left: 15px;
+    font-size: 18px;
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    color: #1A1919;
+  }
+`;
+
+export const ModalIcon = styled.div`
+  display: flex;
+  width: 8%;
+  margin-right: 10px;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
 `;

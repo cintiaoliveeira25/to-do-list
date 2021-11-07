@@ -1,17 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Item } from "./types/item";
+import { ListItem } from "./components/ListItem";
+import { AddArea } from "./components/AddArea";
 import {
   Container,
   Header,
   Titulo,
   Image,
   AreaList,
-  NemItem,
+  NewItem,
+  Modal,
+  ModalIcon,
 } from "./App.styles";
-import { Item } from "./types/item";
-import { ListItem } from "./components/ListItem";
-import { AddArea } from "./components/AddArea";
-import { useEffect } from "react";
 import toDoList from "./assets/images/todo.svg";
+import close from "./assets/images/close.png";
+import save from "./assets/images/save.png";
 
 function App() {
   const [list, setList] = useState<Item[]>([]);
@@ -53,18 +56,18 @@ function App() {
 
   function handleEditTask(item: Item) {
     setOpenModal(true);
-    setTodoId(item.id)
+    setTodoId(item.id);
     setTodoText(item.name);
   }
 
-  function handleSaveEditTask(){
+  function handleSaveEditTask() {
     const todoListEdited = list.map((task: Item) => {
-      if (task.id === todoId){
-        return {...task, name: todoText}
+      if (task.id === todoId) {
+        return { ...task, name: todoText };
       }
-      return task
-    })
-    setList(todoListEdited)
+      return task;
+    });
+    setList(todoListEdited);
     setLocalStorage(todoListEdited);
     handleCloseModal();
   }
@@ -83,10 +86,10 @@ function App() {
   return (
     <Container>
       <Header>
-        <NemItem>
+        <NewItem>
           <Titulo>Lista de Tarefas</Titulo>
           <AddArea onEnter={handleAddTask} />
-        </NemItem>
+        </NewItem>
 
         <Image>
           <img src={toDoList} alt="to do list" />
@@ -95,28 +98,27 @@ function App() {
 
       <AreaList>
         {openModal && (
-          <div
-            style={{
-              position: "absolute",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              backgroundColor: "#fff",
-              color: "#000",
-              zIndex: 99,
-              top: "36%",
-              width: "78%",
-              height: "100px",
-            }}
-          >
+          <Modal>
             <input
               type="text"
               onChange={(e) => setTodoText(e.target.value)}
               value={todoText}
             />
-            <button onClick={handleSaveEditTask}>salvar</button>
-            <button onClick={handleCloseModal}>x</button>
-          </div>
+            <ModalIcon>
+              <img
+                src={save}
+                title="Salvar"
+                alt="botao de salvar"
+                onClick={handleSaveEditTask}
+              />
+              <img
+                src={close}
+                title="Fechar modal"
+                alt="botao de fechar"
+                onClick={handleCloseModal}
+              />
+            </ModalIcon>
+          </Modal>
         )}
 
         {!openModal &&

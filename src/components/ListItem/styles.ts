@@ -8,7 +8,7 @@ export const Container = styled.div(
   ({ done }: ContainerProps) =>
     `
     display: flex;
-    background-color: #4c5b5c;
+    background-color: #fafafa;
     padding: 10px;
     border-radius: 5px;
     margin-bottom: 15px;
@@ -16,7 +16,7 @@ export const Container = styled.div(
     justify-content: space-between;
     
     label {
-        color: ${done ? "#1A1919" : "#e2e2e2"};
+        color: ${done ? "#e2e2e2" : "#1A1919"};
     }
 
     img {

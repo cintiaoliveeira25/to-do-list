@@ -11,13 +11,13 @@ type Props = {
 };
 
 export function ListItem({ item, onChange, onDelete, onEdit }: Props) {
+  
   function buttonDelete() {
     onDelete(item.id);
   }
 
   function buttonEdit() {
     onEdit(item.id);
-    alert("tem certeza?");
   }
 
   return (

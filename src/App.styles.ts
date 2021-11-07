@@ -26,7 +26,7 @@ export const Image = styled.div`
 
 export const AreaList = styled.div`
   margin: auto;
-  width: 82%;
+  width: 78%;
   padding: 0 20px;
   color: white;
   border-width: 5px;

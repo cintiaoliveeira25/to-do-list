@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Container, Header, Titulo, Image, AreaList, NemItem } from "./App.styles";
+import {
+  Container,
+  Header,
+  Titulo,
+  Image,
+  AreaList,
+  NemItem,
+} from "./App.styles";
 import { Item } from "./types/item";
 import { ListItem } from "./components/ListItem";
 import { AddArea } from "./components/AddArea";
@@ -8,11 +15,19 @@ import toDoList from "./assets/images/todo.svg";
 
 function App() {
   const [list, setList] = useState<Item[]>([]);
+  const [openModal, setOpenModal] = useState<Boolean>(false);
+  const [todoId, setTodoId] = useState(0);
+  const [todoText, setTodoText] = useState("");
+
+  function setLocalStorage(data: Item[]) {
+    localStorage.setItem("SaveItemListLocalStorage", JSON.stringify(data));
+  }
 
   function handleAddTask(taskName: string) {
+    const random = Math.floor(Date.now() * Math.random());
     let newList = [...list];
     newList.push({
-      id: list.length + 1,
+      id: random,
       name: taskName,
       done: false,
     });
@@ -27,32 +42,36 @@ function App() {
       }
     }
     setList(newList);
-    localStorage.setItem("SaveItemListLocalStorage", JSON.stringify(newList));
+    setLocalStorage(newList);
   }
 
-  function handleDelete(id: number) {
+  function handleDeleteTask(id: number) {
     const newList = list.filter((item) => item.id !== id);
     setList(newList);
-    localStorage.setItem("SaveItemListLocalStorage", JSON.stringify(newList));
+    setLocalStorage(newList);
   }
 
-  function handleEdit(id: number) {
-    console.log("editou");
+  function handleEditTask(item: Item) {
+    setOpenModal(true);
+    setTodoId(item.id)
+    setTodoText(item.name);
   }
 
-  // function editLocalStorage(id: number, value: any) {
-  //   let storageList = JSON.parse(
-  //     localStorage.getItem("SaveItemListLocalStorage") || "{}"
-  //   );
+  function handleSaveEditTask(){
+    const todoListEdited = list.map((task: Item) => {
+      if (task.id === todoId){
+        return {...task, name: todoText}
+      }
+      return task
+    })
+    setList(todoListEdited)
+    setLocalStorage(todoListEdited);
+    handleCloseModal();
+  }
 
-  //   storageList = storageList.map(function (item: any) {
-  //     if (item.id === id) {
-  //       item.value = value;
-  //     }
-  //     return item;
-  //   });
-  //   localStorage.setItem("list", JSON.stringify(storageList));
-  // }
+  function handleCloseModal() {
+    setOpenModal(false);
+  }
 
   useEffect(() => {
     let storageList = JSON.parse(
@@ -75,15 +94,41 @@ function App() {
       </Header>
 
       <AreaList>
-        {list.map((item, index) => (
-          <ListItem
-            key={index}
-            item={item}
-            onChange={handleTaskChange}
-            onDelete={handleDelete}
-            onEdit={handleEdit}
-          />
-        ))}
+        {openModal && (
+          <div
+            style={{
+              position: "absolute",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              backgroundColor: "#fff",
+              color: "#000",
+              zIndex: 99,
+              top: "36%",
+              width: "78%",
+              height: "100px",
+            }}
+          >
+            <input
+              type="text"
+              onChange={(e) => setTodoText(e.target.value)}
+              value={todoText}
+            />
+            <button onClick={handleSaveEditTask}>salvar</button>
+            <button onClick={handleCloseModal}>x</button>
+          </div>
+        )}
+
+        {!openModal &&
+          list.map((item, index) => (
+            <ListItem
+              key={index}
+              item={item}
+              onChange={handleTaskChange}
+              onDelete={handleDeleteTask}
+              onEdit={() => handleEditTask(item)}
+            />
+          ))}
       </AreaList>
     </Container>
   );

@@ -21,8 +21,9 @@ export function AddArea({ onEnter }: Props) {
 
     if (storage) {
       let oldList = JSON.parse(storage);
+      const random = Math.floor(Date.now() * Math.random());
       const newItem = {
-        id: oldList.length + 1,
+        id: random,
         name: item,
         done: false,
       };

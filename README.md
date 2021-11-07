@@ -4,11 +4,10 @@
     <img alt="To do List" src="https://user-images.githubusercontent.com/81105676/140661997-d435f5c9-fa7f-4922-afe0-62fb8e922afc.jpg" />
 </h1>
 
-<br>
 
 ## Sobre o projeto
 
-O to do list foi um projeto criado para praticar o React com Typescript, você pode conferi-lo [aqui](nervous-yalow-62bb39.netlify.app/).
+O to do list foi um projeto criado para praticar o React com Typescript, você pode conferi-lo <a href="https://nervous-yalow-62bb39.netlify.app/" target="_blank">aqui</a>.
 
 ## Tecnologias
 
@@ -23,7 +22,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 Clone o projeto e acesse a pasta do mesmo via terminal.
 
 ```bash
-$ git clone https://github.com/cintiaoliveeira25/letmeask.git
+$ git clone https://github.com/cintiaoliveeira25/to-do-list.git
 ```
 
 Para iniciá-lo, siga os passos abaixo:

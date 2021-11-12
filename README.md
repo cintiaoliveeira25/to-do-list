@@ -7,7 +7,7 @@
 
 ## Sobre o projeto
 
-O to do list foi um projeto criado para praticar o React com Typescript, você pode conferi-lo <a href="https://nervous-yalow-62bb39.netlify.app/" target="_blank">aqui</a>.
+O to do list foi um projeto criado para praticar o React com Typescript, você pode conferi-lo <a href="https://to-do-list-swart-one.vercel.app/" target="_blank">aqui</a>.
 
 ## Tecnologias
 

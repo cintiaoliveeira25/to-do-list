@@ -38,15 +38,12 @@ export const AreaList = styled.div`
   color: white;
   border-width: 5px;
   border-style: solid;
-  border-image: 
-    linear-gradient(
-      to bottom, 
-      red, 
-      rgba(0, 0, 0, 0)
-    ) 1 100%;
+  border-image: linear-gradient(to bottom, red, rgba(0, 0, 0, 0)) 1 100%;
 `;
 
-export const Modal = styled.div`
+export const OpenModal = styled.div``;
+
+export const ModalEdit = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -54,7 +51,9 @@ export const Modal = styled.div`
   position: absolute;
   color: white;
   z-index: 99;
-  top: 40%;
+  @media screen and (max-width: 1280px) {
+    top: 50%;
+  }
   width: 78%;
   height: 60px;
   border-radius: 5px;
@@ -68,12 +67,37 @@ export const Modal = styled.div`
     border: 0 none;
     outline: 0;
     color: #1A1919;
+    border-bottom: 1px solid rgba(17, 17, 73, 0.308);
+  }
+`;
+
+export const ModalDelete = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  position: absolute;
+  z-index: 99;
+  @media screen and (max-width: 1280px) {
+    top: 50%;
+  }
+  width: 78%;
+  height: 60px;
+  border-radius: 5px;
+
+  p {
+    width: 70%;
+    height: 50%;
+    color: black;
+    padding-top: 5px;
+    margin-left: 15px;
+    font-size: 18px;
   }
 `;
 
 export const ModalIcon = styled.div`
   display: flex;
-  width: 8%;
+  width: 6%;
   margin-right: 10px;
   align-items: center;
   justify-content: space-around;

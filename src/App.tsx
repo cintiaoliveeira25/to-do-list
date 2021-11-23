@@ -9,16 +9,20 @@ import {
   Image,
   AreaList,
   NewItem,
-  Modal,
+  OpenModal,
   ModalIcon,
+  ModalDelete,
+  ModalEdit
 } from "./App.styles";
 import toDoList from "./assets/images/todo.svg";
 import close from "./assets/images/close.png";
 import save from "./assets/images/save.png";
+import { Modal } from "./types/enum";
 
 function App() {
   const [list, setList] = useState<Item[]>([]);
   const [openModal, setOpenModal] = useState<Boolean>(false);
+  const [typeModal, setTypeModal] = useState<Modal>();
   const [todoId, setTodoId] = useState(0);
   const [todoText, setTodoText] = useState("");
 
@@ -48,13 +52,22 @@ function App() {
     setLocalStorage(newList);
   }
 
-  function handleDeleteTask(id: number) {
-    const newList = list.filter((item) => item.id !== id);
+  function handleDeleteTask(item: Item) {
+    setTypeModal(Modal.delete);
+    setTodoId(item.id);
+    setOpenModal(true);
+  }
+
+  function handleSaveDeleteTask() {
+    
+    const newList = list.filter((item) => item.id !== todoId);
     setList(newList);
     setLocalStorage(newList);
+    handleCloseModal();
   }
 
   function handleEditTask(item: Item) {
+    setTypeModal(Modal.edit);
     setOpenModal(true);
     setTodoId(item.id);
     setTodoText(item.name);
@@ -98,27 +111,49 @@ function App() {
 
       <AreaList>
         {openModal && (
-          <Modal>
-            <input
-              type="text"
-              onChange={(e) => setTodoText(e.target.value)}
-              value={todoText}
-            />
-            <ModalIcon>
-              <img
-                src={save}
-                title="Salvar"
-                alt="botao de salvar"
-                onClick={handleSaveEditTask}
-              />
-              <img
-                src={close}
-                title="Fechar modal"
-                alt="botao de fechar"
-                onClick={handleCloseModal}
-              />
-            </ModalIcon>
-          </Modal>
+          <OpenModal>
+            {typeModal === Modal.delete ? (
+              <ModalDelete>
+                <p>Deseja realmente excluir o item da lista?</p>
+                <ModalIcon>
+                  <img
+                    src={save}
+                    title="Salvar"
+                    alt="botao de salvar"
+                    onClick={handleSaveDeleteTask}
+                  />
+                  <img
+                    src={close}
+                    title="Fechar modal"
+                    alt="botao de fechar"
+                    onClick={handleCloseModal}
+                  />
+                </ModalIcon>
+              </ModalDelete>
+            ) : (
+              <ModalEdit>
+                <input
+                  type="text"
+                  onChange={(e) => setTodoText(e.target.value)}
+                  value={todoText}
+                />
+                <ModalIcon>
+                  <img
+                    src={save}
+                    title="Salvar"
+                    alt="botao de salvar"
+                    onClick={handleSaveEditTask}
+                  />
+                  <img
+                    src={close}
+                    title="Fechar modal"
+                    alt="botao de fechar"
+                    onClick={handleCloseModal}
+                  />
+                </ModalIcon>
+              </ModalEdit>
+            )}
+          </OpenModal>
         )}
 
         {!openModal &&
@@ -127,7 +162,7 @@ function App() {
               key={index}
               item={item}
               onChange={handleTaskChange}
-              onDelete={handleDeleteTask}
+              onDelete={() => handleDeleteTask(item)}
               onEdit={() => handleEditTask(item)}
             />
           ))}

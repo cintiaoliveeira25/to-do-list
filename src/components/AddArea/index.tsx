@@ -3,9 +3,10 @@ import { Container } from "./styles";
 
 type Props = {
   onEnter: (taskName: string) => void;
+  onSubmit: (taskName: string) => void;
 };
 
-export function AddArea({ onEnter }: Props) {
+export function AddArea({ onEnter, onSubmit }: Props) {
   const [inputText, setInputText] = useState<string>("");
 
   function handleKeyUp(e: KeyboardEvent) {
@@ -14,6 +15,12 @@ export function AddArea({ onEnter }: Props) {
       saveOnStorage(inputText);
       setInputText("");
     }
+  }
+
+  function handleAddItem() {
+    onSubmit(inputText);
+    saveOnStorage(inputText);
+    setInputText("");
   }
 
   function saveOnStorage(item: string) {
@@ -30,7 +37,6 @@ export function AddArea({ onEnter }: Props) {
       let newList = [...oldList, newItem];
 
       localStorage.setItem("SaveItemListLocalStorage", JSON.stringify(newList));
-      
     } else if (localStorage.getItem("SaveItemListLocalStorage") === null) {
       const newItem = {
         id: 1,
@@ -57,7 +63,7 @@ export function AddArea({ onEnter }: Props) {
         onChange={SaveItem}
         onKeyUp={handleKeyUp}
       />
+      <button onClick={() => handleAddItem()}>Salvar</button>
     </Container>
   );
 }
-

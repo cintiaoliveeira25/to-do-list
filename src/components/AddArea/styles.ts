@@ -2,8 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   border: 1px solid #0a2463;
-  border-radius: 7px;
-  padding: 10px;
+  border-radius: 9px;
   margin: 20px 0;
   display: flex;
   align-items: center;
@@ -14,5 +13,18 @@ export const Container = styled.div`
     outline: 0;
     font-size: 18px;
     flex: 1;
+    padding: 10px;
+  }
+
+  button {
+    color: #fff;
+    font-size: 18px;
+    width: 15%;
+    padding: 10px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    background-color: #3F3D56;
+    border: 1px solid #3F3D56;
+    cursor: pointer;
   }
 `;

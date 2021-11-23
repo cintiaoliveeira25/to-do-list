@@ -12,7 +12,7 @@ import {
   OpenModal,
   ModalIcon,
   ModalDelete,
-  ModalEdit
+  ModalEdit,
 } from "./App.styles";
 import toDoList from "./assets/images/todo.svg";
 import close from "./assets/images/close.png";
@@ -59,7 +59,6 @@ function App() {
   }
 
   function handleSaveDeleteTask() {
-    
     const newList = list.filter((item) => item.id !== todoId);
     setList(newList);
     setLocalStorage(newList);
@@ -101,7 +100,7 @@ function App() {
       <Header>
         <NewItem>
           <Titulo>Lista de Tarefas</Titulo>
-          <AddArea onEnter={handleAddTask} />
+          <AddArea onEnter={handleAddTask} onSubmit={handleAddTask} />
         </NewItem>
 
         <Image>

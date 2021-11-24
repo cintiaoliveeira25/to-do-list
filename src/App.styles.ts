@@ -12,6 +12,12 @@ export const Header = styled.div`
   width: 90%;
   margin: auto;
   padding: 50px;
+  @media screen and (max-width: 1280px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    padding: 50px 0;
+  }
 `;
 
 export const Titulo = styled.h1`
@@ -19,15 +25,24 @@ export const Titulo = styled.h1`
   font-size: 40px;
   text-align: center;
   padding-bottom: 20px;
+  /* @media screen and (max-width: 1280px) {
+    font-size: 25px;
+  } */
 `;
 
 export const NewItem = styled.div`
   width: 50%;
+  /* @media screen and (max-width: 1280px) {
+    width: 40%;
+  } */
 `;
 
 export const Image = styled.div`
   img {
     max-width: 400px;
+    @media screen and (max-width: 1280px) {
+    max-width: 200px;
+  }
   }
 `;
 

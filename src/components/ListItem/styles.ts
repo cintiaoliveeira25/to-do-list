@@ -17,6 +17,9 @@ export const Container = styled.div(
     
     label {
         color: ${done ? "#e2e2e2" : "#1A1919"};
+        @media screen and (max-width: 1280px) {
+            text-align: center;
+          }
     }
 
     img {
@@ -48,6 +51,9 @@ export const Checkbox = styled.div`
     height: 25px;
     margin-right: 5px;
     text-align: center;
+    @media screen and (max-width: 1280px) {
+      margin: auto;
+    }
   }
 
   .checkmark {
@@ -93,4 +99,9 @@ export const Checkbox = styled.div`
 `;
 
 export const Icons = styled.div`
+    @media screen and (max-width: 1280px) {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
 `;

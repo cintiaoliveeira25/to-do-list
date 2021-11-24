@@ -6,6 +6,10 @@ export const Container = styled.div`
   margin: 20px 0;
   display: flex;
   align-items: center;
+  @media screen and (max-width: 1280px) {
+      min-width: 320px;
+      margin-left: -70px;
+    }
   
   input {
     border: 0px;
@@ -14,6 +18,7 @@ export const Container = styled.div`
     font-size: 18px;
     flex: 1;
     padding: 10px;
+
   }
 
   button {
@@ -26,5 +31,8 @@ export const Container = styled.div`
     background-color: #3F3D56;
     border: 1px solid #3F3D56;
     cursor: pointer;
+    @media screen and (max-width: 1280px) {
+      width: 30%;
+    }
   }
 `;

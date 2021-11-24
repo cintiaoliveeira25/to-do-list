@@ -33,6 +33,7 @@ export const Container = styled.div`
     cursor: pointer;
     @media screen and (max-width: 1280px) {
       width: 30%;
+      margin-left: -70px;
     }
   }
 `;

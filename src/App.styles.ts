@@ -25,16 +25,10 @@ export const Titulo = styled.h1`
   font-size: 40px;
   text-align: center;
   padding-bottom: 20px;
-  /* @media screen and (max-width: 1280px) {
-    font-size: 25px;
-  } */
 `;
 
 export const NewItem = styled.div`
   width: 50%;
-  /* @media screen and (max-width: 1280px) {
-    width: 40%;
-  } */
 `;
 
 export const Image = styled.div`
@@ -67,7 +61,7 @@ export const ModalEdit = styled.div`
   color: white;
   z-index: 99;
   @media screen and (max-width: 1280px) {
-    top: 50%;
+    top: 80%;
   }
   width: 78%;
   height: 60px;
@@ -94,7 +88,7 @@ export const ModalDelete = styled.div`
   position: absolute;
   z-index: 99;
   @media screen and (max-width: 1280px) {
-    top: 50%;
+    top: 80%;
   }
   width: 78%;
   height: 60px;
@@ -117,4 +111,8 @@ export const ModalIcon = styled.div`
   align-items: center;
   justify-content: space-around;
   cursor: pointer;
+  @media screen and (max-width: 1280px) {
+    width: 10%;
+    margin-right: 20px;
+  }
 `;

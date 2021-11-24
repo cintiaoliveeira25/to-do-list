@@ -18,9 +18,12 @@ export function AddArea({ onEnter, onSubmit }: Props) {
   }
 
   function handleAddItem() {
-    onSubmit(inputText);
-    saveOnStorage(inputText);
-    setInputText("");
+    if (inputText.trim() !== "") {
+      onSubmit(inputText);
+      saveOnStorage(inputText);
+      setInputText("");
+
+    }
   }
 
   function saveOnStorage(item: string) {
